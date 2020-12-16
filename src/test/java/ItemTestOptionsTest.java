@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuOptionsTest {
+public class ItemTestOptionsTest {
     public ArrayList<Item> itemsTest = new ArrayList<>();
     public ListOfBooks listOfBooksTest = new ListOfBooks();
 
@@ -17,10 +17,17 @@ public class MenuOptionsTest {
     }
 
     @Test
+    public void shouldGetBookTitle() {  Assert.assertTrue(listOfBooksTest.items.get(0).getTitle() == "The Rosie Result"); }
+
+    @Test
+    public void shouldGetBookAuthor() {  Assert.assertTrue(listOfBooksTest.items.get(0).getAuthor() == "Graeme Simsion"); }
+
+    @Test
+    public void shouldGetBookYear() {  Assert.assertTrue(listOfBooksTest.items.get(0).getYear() == 2019); }
+
+    @Test
     public void shouldVerifTheListOfBooksAreCorrect() {
         Assert.assertTrue(listOfBooksTest.compareItemLists(itemsTest));
     }
-
-
 
 }

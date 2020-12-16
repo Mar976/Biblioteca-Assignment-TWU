@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListOfBooks {
+    public ArrayList<Item> items;
 
-    protected static final String TITLE = "Title";
-    protected static final String AUTHOR = "Author";
-    protected static final String YEAR = "Year";
-
-    private ArrayList<Item> items = new ArrayList<>();
+    public ListOfBooks() {
+        items = new ArrayList<>();
+        addBooks();
+    }
 
     public void addBooks() {
         items.add(new Item("The Rosie Result","Graeme Simsion",2019));
