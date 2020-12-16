@@ -28,9 +28,19 @@ public class ListOfBooks {
         return true;
     }
 
-    public void printItems() {
+    public String printItems(ArrayList<Item> items) {
+        String bookList = "\n";
         for(Item item:items) {
-            item.printItem();
+            bookList += item.printItem() + "\n";
         }
+        return bookList;
     }
+    public String printItems() {
+        String bookList = "\n";
+        for(Item item:items) {
+            bookList += item.printItem() + "\n";
+        }
+        return bookList;
+    }
+
 }
