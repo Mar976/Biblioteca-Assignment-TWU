@@ -5,18 +5,25 @@ import java.util.Scanner;
 
 public class CheckIn {
 
-    ListOfBooks listOfBooks = new ListOfBooks();
-
-    public int checkInBook(String bookName, ArrayList<Item> items) {
-        int foundindex = listOfBooks.returnIndex(bookName);
-        if(foundindex != -1) {
-            return foundindex;
+    public Item checkInBook(int bookId, ArrayList<Item> items) {
+        Item foundItem = returnItem(bookId);
+        if(foundItem != null) {
+            return foundItem;
         }
-        return -1;
+        return null;
     }
 
     public String getItemTitle() throws Exception{
         Scanner input = new Scanner(System.in);
         return input.nextLine();
+    }
+
+    public Item returnItem(int id) {
+        for(int i=0; i<Resources.checkOutBook.size(); i++) {
+            if(Resources.checkOutBook.get(i).getId() == id) {
+                return Resources.checkOutBook.get(i);
+            }
+        }
+        return null;
     }
 }

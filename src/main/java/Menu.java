@@ -34,21 +34,21 @@ public class Menu {
         CheckOut checkout = new CheckOut();
         CheckIn checkIn = new CheckIn();
         int bookID=0;
+        Item foundBook;
         switch (userAnswer) {
             case 1:
                 return listOfBooks.printItems();
             case 2:
                 bookID = checkout.getItemCode();
-                if(checkout.checkOutBook(bookID, listOfBooks.items)) {
-                    listOfBooks.items.get(bookID).setAvaibality(false);
+                if(checkout.checkOutBook(listOfBooks.returnItem(bookID))) {
+                    listOfBooks.updateAvaibality(bookID,false);
                     return "Thank you! Enjoy the book";
                 }
                 return "Sorry, that book is not available";
             case 3:
-                String bookTitle = checkIn.getItemTitle();
-                int foundBookIndex = checkIn.checkInBook(bookTitle, listOfBooks.items);
-                if(foundBookIndex != -1) {
-                    listOfBooks.items.get(foundBookIndex).setAvaibality(true);
+                bookID = checkout.getItemCode();
+                if(checkIn.checkInBook(bookID, listOfBooks.items) != null) {
+                    listOfBooks.updateAvaibality(bookID,true);
                     return "Thank you for returning the book!";
                 }
                 return "That is not a valid book to return!";

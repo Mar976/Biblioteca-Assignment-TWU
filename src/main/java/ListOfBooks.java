@@ -10,9 +10,9 @@ public class ListOfBooks {
     }
 
     public void addBooks() {
-        items.add(new Item("The Rosie Result","Graeme Simsion",2019));
-        items.add(new Item("The Rosie Effect","Graeme Simsion",2014));
-        items.add(new Item("The Rosie Project","Graeme Simsion",2013));
+        items.add(new Item(1,"The Rosie Result","Graeme Simsion",2019));
+        items.add(new Item(2,"The Rosie Effect","Graeme Simsion",2014));
+        items.add(new Item(3,"The Rosie Project","Graeme Simsion",2013));
     }
 
     public ArrayList<Item> listItems() {
@@ -42,14 +42,20 @@ public class ListOfBooks {
         }
         return bookList;
     }
-
-    public int returnIndex(String title) {
+    public void updateAvaibality(int bookID,boolean avaibality) {
         for(int i=0; i<items.size(); i++) {
-            if(items.get(i).getTitle() == title) {
-                return i;
+            if(items.get(i).getId() == bookID) {
+                items.get(i).setAvaibality(avaibality);
             }
         }
-        return -1;
     }
 
+    public Item returnItem(int id) {
+        for(int i=0; i<items.size(); i++) {
+            if(items.get(i).getId() == id) {
+                return items.get(i);
+            }
+        }
+        return null;
+    }
 }

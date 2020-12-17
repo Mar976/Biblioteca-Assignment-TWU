@@ -1,10 +1,12 @@
 public class Item {
+    public int id;
     private String title;
     private String author;
     private int year;
     private boolean avaibality;
 
-    public Item(String title, String author, int year) {
+    public Item(int id,String title, String author, int year) {
+        this.id = id;
         this.author = author;
         this.title = title;
         this.year = year;
@@ -20,7 +22,7 @@ public class Item {
     }
 
     public String printItem() {
-        return title + " " + author+ " " + year + " " + avaibality;
+        return id+ " "+ title + " " + author+ " " + year + " " + avaibality;
     }
 
     public boolean getAvaiblity() {
@@ -29,5 +31,9 @@ public class Item {
 
     public void setAvaibality(boolean newAvaibality) {
         avaibality = newAvaibality;
+    }
+
+    public int getId() {
+        return id;
     }
 }
