@@ -43,4 +43,13 @@ public class ListOfBooks {
         return bookList;
     }
 
+    public int returnIndex(String title) {
+        for(int i=0; i<items.size(); i++) {
+            if(items.get(i).getTitle() == title) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }
