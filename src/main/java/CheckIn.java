@@ -1,11 +1,8 @@
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CheckIn {
 
-    public Item checkInBook(int bookId, ArrayList<Item> items) {
+    public Item checkInItem(int bookId, ArrayList<Item> items) {
         Item foundItem = returnItem(bookId);
         if(foundItem != null) {
             return foundItem;
@@ -13,15 +10,10 @@ public class CheckIn {
         return null;
     }
 
-    public String getItemTitle() throws Exception{
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
-    }
-
     public Item returnItem(int id) {
-        for(int i=0; i<Resources.checkOutBook.size(); i++) {
-            if(Resources.checkOutBook.get(i).getId() == id) {
-                return Resources.checkOutBook.get(i);
+        for(int i=0; i<Resources.checkOutItems.size(); i++) {
+            if(Resources.checkOutItems.get(i).id == id) {
+                return Resources.checkOutItems.get(i);
             }
         }
         return null;
