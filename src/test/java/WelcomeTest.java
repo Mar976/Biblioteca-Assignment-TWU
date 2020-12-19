@@ -7,6 +7,6 @@ public class WelcomeTest {
 
     @Test
     public void TestWelcomeMessage() {
-        Assert.assertEquals(Resources.welcomeMessage, testWelcome);
+        Assert.assertEquals(Resources.WELCOME_MESSAGE, testWelcome);
     }
 }

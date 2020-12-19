@@ -5,15 +5,14 @@ public class Item {
     public boolean availability;
     public int id;
 
-    public Item(int id, String name, int year) {
-        this.id = id;
+    public Item(String name, int year) {
         this.name = name;
         this.year = year;
         this.availability = true;
     }
 
     public String createItem() {
-        return "Available:" +availability + " ID:" + id + " Name:" + name + " Year" + year;
+        return "Available:" + availability  + " Name:" + name + " Year:" + year;
     }
 
     public String getAuthor() {

@@ -6,7 +6,7 @@ public class Main {
         PrintStream printStream = new PrintStream(System.out);
         Menu menu = new Menu();
 
-        printStream.println(Resources.welcomeMessage);
+        printStream.println(Resources.WELCOME_MESSAGE);
 
         menu.menuFunction();
 

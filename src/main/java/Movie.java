@@ -7,7 +7,7 @@ public class Movie extends Item{
     public int id;
 
     public Movie(int id, String name, int year, String director, double rating) {
-        super(id, name, year);
+        super(name, year);
         this.director = director;
         this.rating = rating;
     }

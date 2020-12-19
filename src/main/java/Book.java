@@ -2,7 +2,7 @@ public class Book extends Item{
     public String author;
 
     public Book(int id, String name, String author, int year) {
-        super(id, name, year);
+        super(name, year);
         this.author = author;
     }
 

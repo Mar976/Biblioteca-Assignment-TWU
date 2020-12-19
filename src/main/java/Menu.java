@@ -2,74 +2,111 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Menu {
-    private int userAnswer;
+    private String userAnswerString;
+    private int userAnswerInt;
     PrintStream printStream;
     ListOfItems listOfItems;
+    Scanner input;
 
     public Menu() {
-        userAnswer=-1;
+        userAnswerInt=-1;
         printStream = new PrintStream(System.out);
         listOfItems = new ListOfItems();
-    }
-
-    public void getUserAnswerForMenu() throws Exception {
-        Scanner in = new Scanner(System.in);
-        userAnswer = in.nextInt();
-    }
-
-    public int returnUserAnswer() {
-        return userAnswer;
+        input = new Scanner(System.in);
     }
 
     public void showMenu() {
-        printStream.println(Resources.MenuGuide);
-        printStream.println(Resources.MenuOption_itemList);
-        printStream.println(Resources.MenuOption_checkOut);
-        printStream.println(Resources.MenuOption_checkIn);
+        printStream.println(Resources.SELECT_FROM_MENU);
+        printStream.println(Resources.MENU_ITEMS_LIST);
+        printStream.println(Resources.MENU_CHECKOUT);
+        printStream.println(Resources.MENU_CHECKIN);
     }
 
-    public int getUserInput() throws Exception{
+    public String switchCasesForMenuSelection(int userAnswer) throws Exception{
+        switch (userAnswer) {
+            case 1:
+                return listOfItems.printItems();
+            case 2:
+                return checkOutOption();
+            case 3:
+                return checkInOption();
+            default:
+                userAnswer= -1;
+                return Resources.MENU_RESELECTION;
+        }
+    }
+
+    public String getString() throws Exception{
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+    public int getNumber() throws Exception{
         Scanner input = new Scanner(System.in);
         return input.nextInt();
     }
 
-    public String switchCasesForMenuSelection(int userAnswer) throws Exception{
-        CheckOut checkout = new CheckOut();
+    public String checkInOption() throws Exception {
+        String inputName;
         CheckIn checkIn = new CheckIn();
-        int inputID=0;
-        Book foundBook;
-        switch (userAnswer) {
-            case 1:
-                return listOfItems.printItems();
-
-            case 2:
-                inputID = getUserInput();
-                if(checkout.checkOutItem(listOfItems.returnItem(inputID))) {
-                    listOfItems.updateAvailability(inputID,false);
-                    return "Thank you! Enjoy the book";
-                }
-                return "Sorry, that book is not available";
-
-            case 3:
-                inputID = getUserInput();
-                if(checkIn.checkInItem(inputID, Resources.checkOutItems) != null) {
-                    listOfItems.updateAvailability(inputID,true);
-                    return "Thank you for returning the book!";
-                }
-                return "That is not a valid book to return!";
-
-            default:
-                userAnswer=-1;
-                return "Please select a valid option! Please write a valid Book ID!";
+        if(!getLogin()) {return Resources.INVALID_CREDENTIALS;}
+        System.out.println(Resources.ENTER_ITEM_TITLE);
+        inputName = getString();
+        if(checkIn.checkInItem(input.nextLine(), Resources.checkOutItems) != null) {
+            listOfItems.updateAvailability(inputName,true);
+            return Resources.VALID_CHECKIN;
         }
+        return Resources.INVALID_CHECKIN;
+    }
+
+    public String checkOutOption() throws Exception {
+        if(!getLogin()) {return Resources.INVALID_CREDENTIALS;}
+
+        String inputName;
+        CheckOut checkout = new CheckOut();
+        System.out.println(Resources.ENTER_ITEM_TITLE);
+        inputName = getString();
+        if(checkout.checkOutItem(listOfItems.returnItem(inputName))) {
+            listOfItems.updateAvailability(inputName,false);
+            return Resources.VALID_CHECKOUT;
+        }
+        return Resources.INVALID_CHECKOUT;
     }
 
     public void menuFunction() throws Exception {
         do {
             showMenu();
-            getUserAnswerForMenu();
-            System.out.println(switchCasesForMenuSelection(userAnswer));
-        } while(userAnswer!=-1);
+            userAnswerInt= getNumber();
+            System.out.println(switchCasesForMenuSelection(userAnswerInt));
+        } while(userAnswerInt != -1);
+    }
+
+    public Boolean getLogin() {
+        System.out.println(Resources.USERNAME);
+        String libraryNumber = input.nextLine();
+        /*if(libraryNumber.matches("\\w{3}-\\w{4}")) {                                //Need to fix
+            System.out.println("Invalid format!");
+            return false;
+        }*/
+
+        System.out.println(Resources.PASSWORD);
+        String password = input.nextLine();
+
+        Customer foundCustomer= verify(libraryNumber, password);
+        if(foundCustomer!=null) {
+            return true;
+        }
+        return false;
+    }
+
+    public Customer verify(String libraryNumber, String password) {
+        ListOfCustomer listOfCustomer = new ListOfCustomer();
+        for(Customer customer:listOfCustomer.customers) {
+            if(libraryNumber.equals(customer.libraryNumber) && password.equals(customer.password)) {
+                System.out.println(customer.createCustomer());
+                return customer;
+            }
+        }
+        return null;
     }
 
 }

@@ -25,22 +25,22 @@ public class CheckInTest {
 
     @Test
     public void shouldReturnNullIfBookIsNotCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem(5,itemsTest) == null);
+        Assert.assertTrue(checkIn.checkInItem("The Rosie Results",itemsTest) == null);
     }
 
     @Test
     public void shouldPassIfBookIsCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem(1,itemsTest) != null);
+        Assert.assertTrue(checkIn.checkInItem("The Rosie Result",itemsTest) != null);
     }
 
     @Test
     public void shouldReturnNullIfMovieIsNotCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem(10,itemsTest) == null);
+        Assert.assertTrue(checkIn.checkInItem("The Sun",itemsTest) == null);
     }
 
     @Test
     public void shouldPassIfMovieIsCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem(2,itemsTest) != null);
+        Assert.assertTrue(checkIn.checkInItem("The Moon",itemsTest) != null);
     }
 
 

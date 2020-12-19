@@ -31,17 +31,17 @@ public class ListOfItems {
         }
         return bookList;
     }
-    public void updateAvailability(int bookID,boolean availability) {
+    public void updateAvailability(String name,boolean availability) {
         for(int i=0; i<items.size(); i++) {
-            if(items.get(i).id == bookID) {
+            if(items.get(i).name == name) {
                 items.get(i).availability= availability;
             }
         }
     }
 
-    public Item returnItem(int id) {
+    public Item returnItem(String name) {
         for(int i=0; i<items.size(); i++) {
-            if(items.get(i).id == id) {
+            if(items.get(i).name == name) {
                 return items.get(i);
             }
         }
