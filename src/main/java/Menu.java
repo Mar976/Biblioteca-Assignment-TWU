@@ -52,7 +52,7 @@ public class Menu {
 
             case 3:
                 inputID = getUserInput();
-                if(checkIn.checkInItem(inputID, listOfItems.items) != null) {
+                if(checkIn.checkInItem(inputID, Resources.checkOutItems) != null) {
                     listOfItems.updateAvailability(inputID,true);
                     return "Thank you for returning the book!";
                 }
