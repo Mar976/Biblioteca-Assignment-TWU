@@ -13,8 +13,8 @@ public class Movie extends Item{
     }
 
     @Override
-    public String createItem() {
-        return super.createItem() + " Director:" + director + " Rating:" + rating + " Category:Movie" ;
+    public String toString() {
+        return super.toString() + " Director:" + director + " Rating:" + rating + " Category:Movie" ;
     }
 
     @Override

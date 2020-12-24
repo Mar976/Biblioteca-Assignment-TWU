@@ -17,17 +17,10 @@ public class ListOfItems {
         items.add(new Movie(6,"Away from Moon",1999,"Itashi",2.5));
     }
 
-    public String printItems(ArrayList<Item> books) {
-        String bookList = "\n";
-        for(Item item:items) {
-            bookList += item.createItem() + "\n";
-        }
-        return bookList;
-    }
     public String printItems() {
         String bookList = "\n";
         for(Item item:items) {
-            bookList += item.createItem() + "\n";
+            bookList += item.toString() + "\n";
         }
         return bookList;
     }

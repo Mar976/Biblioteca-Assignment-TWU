@@ -6,9 +6,8 @@ public class Book extends Item{
         this.author = author;
     }
 
-    @Override
-    public String createItem() {
-        return super.createItem() + " Author:" + author + " Category:Book" ;
+    public String toString() {
+        return super.toString() + " Author:" + author + " Category:Book" ;
     }
 
     @Override

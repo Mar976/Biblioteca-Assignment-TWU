@@ -20,16 +20,16 @@ public class MenuListTest {
 
     @Test
     public void shouldPrintAnErrorMessageIfInvalid() throws Exception {
-        Assert.assertEquals(menu.switchCasesForMenuSelection(8),"Please select a valid option!");
+        Assert.assertEquals(menu.allMenuOptions(8),"Please select a valid option!");
     }
 
     @Test
     public void shouldPrintMovie() {
-       Assert.assertEquals(itemsTest.get(1).createItem(),"Available:true Name:The Moon Year:1990 Director:Al lee Rating:4.3 Category:Movie");
+       Assert.assertEquals(itemsTest.get(1).toString(),"Available:true Name:The Moon Year:1990 Director:Al lee Rating:4.3 Category:Movie");
     }
 
     @Test
     public void shouldPrintBook() {
-        Assert.assertEquals(itemsTest.get(0).createItem(),"Available:true Name:The Rosie Result Year:2019 Author:Graeme Simsion Category:Book");
+        Assert.assertEquals(itemsTest.get(0).toString(),"Available:true Name:The Rosie Result Year:2019 Author:Graeme Simsion Category:Book");
     }
 }

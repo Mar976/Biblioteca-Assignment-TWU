@@ -11,7 +11,7 @@ public class Item {
         this.availability = true;
     }
 
-    public String createItem() {
+    public String toString() {
         return "Available:" + availability  + " Name:" + name + " Year:" + year;
     }
 
