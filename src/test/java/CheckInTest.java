@@ -1,23 +1,20 @@
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CheckInTest {
-    public CheckIn checkIn;
-    Item testBook;
-    Item testMovie;
-    ArrayList<Item> itemsTest;
+    private CheckIn checkIn;
+    private ArrayList<Item> itemsTest;
 
     @BeforeEach
     public void setUp() {
         checkIn = new CheckIn();
         itemsTest = new ArrayList<>();
-        testBook = new Book(1,"The Rosie Result","Graeme Simsion",2019);
+        Item testBook = new Book("The Rosie Result", "Graeme Simsion", 2019);
         testBook.availability = false;
-        testMovie = new Movie(2,"The Moon",1990,"Al lee",4.3);
+        Item testMovie = new Movie("The Moon", 1990, "Al lee", 4.3);
         testMovie.availability = false;
         itemsTest.add(testMovie);
         itemsTest.add(testBook);
@@ -25,22 +22,22 @@ public class CheckInTest {
 
     @Test
     public void shouldReturnNullIfBookIsNotCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem("The Rosie Results",itemsTest) == null);
+        Assertions.assertNull(checkIn.checkInItem("The Rosie Results", itemsTest));
     }
 
     @Test
     public void shouldPassIfBookIsCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem("The Rosie Result",itemsTest) != null);
+        Assertions.assertNotNull(checkIn.checkInItem("The Rosie Result", itemsTest));
     }
 
     @Test
     public void shouldReturnNullIfMovieIsNotCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem("The Sun",itemsTest) == null);
+        Assertions.assertNull(checkIn.checkInItem("The Sun", itemsTest));
     }
 
     @Test
     public void shouldPassIfMovieIsCheckOutBefore() {
-        Assert.assertTrue(checkIn.checkInItem("The Moon",itemsTest) != null);
+        Assertions.assertNotNull(checkIn.checkInItem("The Moon", itemsTest));
     }
 
 

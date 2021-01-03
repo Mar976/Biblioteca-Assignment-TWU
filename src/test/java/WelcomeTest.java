@@ -1,12 +1,11 @@
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class WelcomeTest {
 
-    public String testWelcome = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
-
     @Test
     public void TestWelcomeMessage() {
-        Assert.assertEquals(Main.WELCOME_MESSAGE, testWelcome);
+        String testWelcome = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        Assertions.assertEquals(Main.WELCOME_MESSAGE, testWelcome);
     }
 }

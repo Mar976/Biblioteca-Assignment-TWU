@@ -7,7 +7,6 @@ public class Menu {
     public static final String MENU_ITEMS_LIST = "1. List of Items";
     public static final String MENU_CHECKOUT = "2. Check out a Items";
     public static final String MENU_CHECKIN = "3. Check in a Items";
-    public static final String MENU_EXIT = "0. Exit the system";
     public static final String ENTER_ITEM_TITLE = "Enter Item title: ";
     public static final String INVALID_CREDENTIALS = "Invalid LibraryNumber or Password!";
     public static final String VALID_CHECKOUT = "Thank you! Enjoy the book";
@@ -17,10 +16,7 @@ public class Menu {
     public static final String MENU_RESELECTION = "Please select a valid option! Please write a valid Book ID!";
     public static final String USERNAME = "Username: ";
     public static final String PASSWORD = "Password: ";
-    public static final String INVALID = "INVALID";
 
-    
-    private String userAnswerString;
     private int userAnswer;
     PrintStream printStream;
     ListOfItems listOfItems;
@@ -40,7 +36,7 @@ public class Menu {
         printStream.println( MENU_CHECKIN);
     }
 
-    public String allMenuOptions(int userAnswer) throws Exception{
+    public String allMenuOptions(int userAnswer) {
         switch (userAnswer) {
             case 1:
                 return listOfItems.printItems();
@@ -49,21 +45,20 @@ public class Menu {
             case 3:
                 return checkInOption();
             default:
-                userAnswer= -1;
                 return  MENU_RESELECTION;
         }
     }
 
-    public String getString() throws Exception{
+    public String getString() {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
-    public int getNumber() throws Exception{
+    public int getNumber() {
         Scanner input = new Scanner(System.in);
         return input.nextInt();
     }
 
-    public String checkInOption() throws Exception {
+    public String checkInOption() {
         String inputName;
         CheckIn checkIn = new CheckIn();
         if(!getLogin()) {return  INVALID_CREDENTIALS;}
@@ -76,7 +71,7 @@ public class Menu {
         return  INVALID_CHECKIN;
     }
 
-    public String checkOutOption() throws Exception {
+    public String checkOutOption() {
         if(!getLogin()) {return  INVALID_CREDENTIALS;}
 
         String inputName;
@@ -90,7 +85,7 @@ public class Menu {
         return  INVALID_CHECKOUT;
     }
 
-    public void menuProcess() throws Exception {
+    public void menuProcess() {
         do {
             showMenu();
             userAnswer = getNumber();
@@ -101,19 +96,12 @@ public class Menu {
     public Boolean getLogin() {
         System.out.println( USERNAME);
         String libraryNumber = input.nextLine();
-        /*if(libraryNumber.matches("\\w{3}-\\w{4}")) {                                //Need to fix
-            System.out.println("Invalid format!");
-            return false;
-        }*/
 
         System.out.println( PASSWORD);
         String password = input.nextLine();
 
         Customer foundCustomer= verify(libraryNumber, password);
-        if(foundCustomer!=null) {
-            return true;
-        }
-        return false;
+        return foundCustomer != null;
     }
 
     public Customer verify(String libraryNumber, String password) {
